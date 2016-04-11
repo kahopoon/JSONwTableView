@@ -1,0 +1,6 @@
+framework module Pods_JSONwTableView {
+  umbrella header "Pods-JSONwTableView-umbrella.h"
+
+  export *
+  module * { export * }
+}
