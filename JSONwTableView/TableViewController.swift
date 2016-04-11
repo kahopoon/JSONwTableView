@@ -8,23 +8,23 @@
 
 import UIKit
 import SDWebImage
+import Alamofire
+import SwiftyJSON
 
 class TableViewController: UITableViewController {
 
-    let data = NSData(contentsOfURL: NSURL(string: "https://kahopoon.net/temp.json")!)
-    var rawData = [[String:String]]()
+    //let data = NSData(contentsOfURL: NSURL(string: "https://kahopoon.net/temp.json")!
+    //var rawData = [[String:String]]()
+    let url: String = "https://kahopoon.net/temp.json"
+    var veryCooltoShow:[coolStuff] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableView.estimatedRowHeight = 600.0
         
+        /*
         do {
             let object = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
             if let dictionary = object as? [String: AnyObject] {
@@ -33,8 +33,28 @@ class TableViewController: UITableViewController {
         } catch {
             // Handle Error
         }
+        */
+        Alamofire.request(.GET, url, parameters: nil).responseJSON { (response) in
+            if let data = response.result.value {
+                let json = JSON(data)
+                if json["success"].boolValue == true {
+                    let results = json["result"].arrayValue
+                    for result in results {
+                        let each:coolStuff = coolStuff()
+                        each.contentPicUrl = result["imageUrl"].stringValue
+                        each.title = result["title"].stringValue
+                        each.description = result["description"].stringValue
+                        each.name = result["user"]["name"].stringValue
+                        each.profilePicUrl = result["user"]["image_url"].stringValue
+                        self.veryCooltoShow.append(each)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
+    /*
     func readJSONObject(object: [String: AnyObject]) {
         guard let results = object["result"] as? [[String: AnyObject]] else { return }
         for result in results {
@@ -43,6 +63,7 @@ class TableViewController: UITableViewController {
             rawData.append(["imageUrl":imageUrl, "title":title, "description":description, "name":userInfo["name"] as! String, "profilePicURL":userInfo["image_url"] as! String])
         }
     }
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,7 +79,8 @@ class TableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return rawData.count
+        //return rawData.count
+        return veryCooltoShow.count
     }
 
     
@@ -66,6 +88,7 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! TableViewCell
 
         // Configure the cell...
+        /*
         let currentData : Dictionary = self.rawData[indexPath.row]
         let profile_url = NSURL(string: currentData["profilePicURL"]!)
         let photo_url = NSURL(string: currentData["imageUrl"]!)
@@ -75,6 +98,13 @@ class TableViewController: UITableViewController {
         cell.imageShow.sd_setImageWithURL(photo_url, placeholderImage: nil)
         cell.titleShow.text = currentData["title"]
         cell.descriptionShow.text = currentData["description"]
+        */
+        
+        cell.profileName.text = veryCooltoShow[indexPath.row].name
+        cell.profilePic.sd_setImageWithURL(NSURL(string: veryCooltoShow[indexPath.row].profilePicUrl!))
+        cell.imageShow.sd_setImageWithURL(NSURL(string: veryCooltoShow[indexPath.row].contentPicUrl!))
+        cell.titleShow.text = veryCooltoShow[indexPath.row].title
+        cell.descriptionShow.text = veryCooltoShow[indexPath.row].description
         
         if indexPath.row % 2 != 0 {
             cell.backgroundColor = UIColor.orangeColor().colorWithAlphaComponent(0.1)

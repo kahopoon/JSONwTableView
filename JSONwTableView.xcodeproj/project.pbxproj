@@ -15,6 +15,7 @@
 		117512AF1CBBD14500A615B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117512AD1CBBD14500A615B1 /* LaunchScreen.storyboard */; };
 		117512B71CBBD16C00A615B1 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117512B61CBBD16C00A615B1 /* TableViewController.swift */; };
 		117512B91CBBD18200A615B1 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117512B81CBBD18200A615B1 /* TableViewCell.swift */; };
+		11856A6E1CBC083D003E28BC /* TableCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11856A6D1CBC083D003E28BC /* TableCellData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		117512B01CBBD14500A615B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		117512B61CBBD16C00A615B1 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		117512B81CBBD18200A615B1 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		11856A6D1CBC083D003E28BC /* TableCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellData.swift; sourceTree = "<group>"; };
 		2835BD5216A65CA06CEBB72B /* Pods-JSONwTableView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONwTableView.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONwTableView/Pods-JSONwTableView.release.xcconfig"; sourceTree = "<group>"; };
 		FEEC3026C1554A382FBC3E7F /* Pods-JSONwTableView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONwTableView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSONwTableView/Pods-JSONwTableView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 				117512AD1CBBD14500A615B1 /* LaunchScreen.storyboard */,
 				117512B01CBBD14500A615B1 /* Info.plist */,
 				117512B61CBBD16C00A615B1 /* TableViewController.swift */,
+				11856A6D1CBC083D003E28BC /* TableCellData.swift */,
 				117512B81CBBD18200A615B1 /* TableViewCell.swift */,
 			);
 			path = JSONwTableView;
@@ -218,6 +221,7 @@
 			files = (
 				117512A71CBBD14500A615B1 /* ViewController.swift in Sources */,
 				117512B91CBBD18200A615B1 /* TableViewCell.swift in Sources */,
+				11856A6E1CBC083D003E28BC /* TableCellData.swift in Sources */,
 				117512B71CBBD16C00A615B1 /* TableViewController.swift in Sources */,
 				117512A51CBBD14500A615B1 /* AppDelegate.swift in Sources */,
 			);
